@@ -1,34 +1,70 @@
+// randomly select one of rock/paper/scissors for computer with equal probability
 function getComputerChoice() {
 	let options = ['Rock', 'Paper', 'Scissors'];
 	return computerChoice = options[Math.floor(Math.random() * options.length)];
 }
 
+// compare player selection with computer selection
 function playRound(playerSelection, computerSelection) {
 	if (playerSelection.toLowerCase() === 'rock') {
 		if (computerSelection === 'Paper') {
-			return 'You lose! Paper beats Rock';
+			console.log('You lose! Paper beats Rock');
+			return 'loss';
 		} else if (computerSelection === 'Scissors') {
-			return 'You win! Rock beats scissors';
+			console.log('You win! Rock beats scissors');
+			return 'win';
 		} else {
-			return 'It\'s a tie!';
+			console.log('It\'s a tie!');
 		}
 	} else if (playerSelection.toLowerCase() === 'scissors') {
 		if (computerSelection === 'Rock') {
-			return 'You lose! Rock beats scissors';
+			console.log('You lose! Rock beats scissors');
+			return 'loss';
 		} else if (computerSelection === 'Paper') {
-			return 'You win! Scissors beats paper';
+			console.log('You win! Scissors beats paper');
+			return 'win'
 		} else {
-			return 'It\'s a tie!';
+			console.log('It\'s a tie!');
 		}
 	} else if (playerSelection.toLowerCase() === 'paper') {
 		if (computerSelection === 'Rock') {
-			return 'You win! Paper beats rock';
+			console.log('You win! Paper beats rock');
+			return 'win'
 		} else if (computerSelection === 'Scissors') {
-			return 'You lose! Scissors beats paper';
+			console.log('You lose! Scissors beats paper');
+			return 'loss'
 		} else {
-			return 'It\'s a tie!';
+			console.log('It\'s a tie!');
 		}
 	} else {
 		return 'Please enter a rock, paper, or scissors';
+	}
+}
+
+// play 5 rounds and output final score
+function game() {
+
+	let playerScore = 0;
+	let computerScore = 0;
+
+	for (let i = 0; i < 5; i++) {
+		let playerChoice = prompt("Choose rock, paper, or scissors and enter your choice here");
+
+		roundResult = playRound(playerChoice, getComputerChoice());
+
+		if (roundResult === 'loss') {
+			computerScore += 1;
+		} else if (roundResult === 'win') {
+			playerScore += 1;
+			}
+	}
+
+
+	if (playerScore > computerScore) {
+		return `You win the game! ${playerScore} rounds vs. ${computerScore} rounds`;
+	} else if (computerScore > playerScore) {
+		return `You lose the game! ${playerScore} rounds vs. ${computerScore} rounds`;
+	} else {
+		return `It's a tie! ${playerScore} rounds vs. ${computerScore} rounds`;
 	}
 }
